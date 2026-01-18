@@ -187,8 +187,4 @@ body {
   .job {
     page-break-inside: avoid;
   }
-
-  .section {
-    page-break-inside: avoid;
-  }
 }
