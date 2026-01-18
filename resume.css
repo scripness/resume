@@ -23,7 +23,11 @@
 
 @page {
   size: A4;
-  margin: 0;
+  margin: 40px 50px;
+}
+
+@page :first {
+  margin-top: 0;
 }
 
 body {
