@@ -107,8 +107,8 @@ body {
 .skills-list {
   list-style: none;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xs) var(--spacing-xl);
+  grid-template-columns: auto auto auto;
+  gap: var(--spacing-xs) var(--spacing-lg);
 }
 
 .skills-list li {
