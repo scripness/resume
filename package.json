@@ -1,0 +1,12 @@
+{
+  "name": "resume",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "bun run build.ts",
+    "dev": "open resume.html || xdg-open resume.html"
+  },
+  "devDependencies": {
+    "puppeteer": "^23.0.0"
+  }
+}
