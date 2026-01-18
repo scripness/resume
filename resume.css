@@ -106,10 +106,9 @@ body {
 /* Skills */
 .skills-list {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm) var(--spacing-lg);
-  margin-bottom: var(--spacing-sm);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xs) var(--spacing-xl);
 }
 
 .skills-list li {
