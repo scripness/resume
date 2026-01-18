@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "bun run build.ts",
-    "dev": "open resume.html || xdg-open resume.html"
+    "dev": "bun dev.ts"
   },
   "devDependencies": {
     "puppeteer": "^23.0.0"
