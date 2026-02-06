@@ -34,9 +34,29 @@ async function buildPDF() {
     },
   });
 
-  await browser.close();
-
   console.log(`PDF generated: ${outputPath}`);
+
+  // Generate technical variant
+  await page.evaluate(() => {
+    document.querySelector('.resume')!.setAttribute('data-variant', 'technical');
+  });
+
+  const technicalOutputPath = join(__dirname, "Andrei Scripcaru - Technical.pdf");
+  await page.pdf({
+    path: technicalOutputPath,
+    format: "A4",
+    printBackground: true,
+    margin: {
+      top: "0",
+      right: "0",
+      bottom: "0",
+      left: "0",
+    },
+  });
+
+  console.log(`PDF generated: ${technicalOutputPath}`);
+
+  await browser.close();
 }
 
 buildPDF().catch(console.error);
