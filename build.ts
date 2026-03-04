@@ -48,6 +48,19 @@ async function buildPDF() {
 
   console.log(`PDF generated: ${technicalOutputPath}`);
 
+  // Generate full variant (technical + dates)
+  await page.evaluate(() => {
+    document.querySelector('.resume')!.setAttribute('data-variant', 'full');
+  });
+
+  const fullOutputPath = join(__dirname, "Andrei Scripcaru - Full.pdf");
+  await page.pdf({
+    path: fullOutputPath,
+    ...pdfOptions,
+  });
+
+  console.log(`PDF generated: ${fullOutputPath}`);
+
   // Generate CNPF variant (separate Romanian file)
   const cnpfHtmlPath = join(__dirname, "resume-cnpf.html");
   await page.goto(`file://${cnpfHtmlPath}`, { waitUntil: "networkidle0" });

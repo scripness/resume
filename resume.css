@@ -186,8 +186,20 @@ body {
   display: none;
 }
 
+.date-only {
+  display: none;
+}
+
 .resume[data-variant="technical"] .tech-only {
   display: block;
+}
+
+.resume[data-variant="full"] .tech-only {
+  display: block;
+}
+
+.resume[data-variant="full"] .date-only {
+  display: inline;
 }
 
 /* Technical Profile */
