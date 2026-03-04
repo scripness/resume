@@ -5,6 +5,12 @@ import { dirname, join } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const pdfOptions = {
+  format: "A4" as const,
+  printBackground: true,
+  margin: { top: "0", right: "0", bottom: "0", left: "0" },
+};
+
 async function buildPDF() {
   const browser = await puppeteer.launch({
     headless: true,
@@ -24,14 +30,7 @@ async function buildPDF() {
 
   await page.pdf({
     path: outputPath,
-    format: "A4",
-    printBackground: true,
-    margin: {
-      top: "0",
-      right: "0",
-      bottom: "0",
-      left: "0",
-    },
+    ...pdfOptions,
   });
 
   console.log(`PDF generated: ${outputPath}`);
@@ -44,17 +43,23 @@ async function buildPDF() {
   const technicalOutputPath = join(__dirname, "Andrei Scripcaru - Technical.pdf");
   await page.pdf({
     path: technicalOutputPath,
-    format: "A4",
-    printBackground: true,
-    margin: {
-      top: "0",
-      right: "0",
-      bottom: "0",
-      left: "0",
-    },
+    ...pdfOptions,
   });
 
   console.log(`PDF generated: ${technicalOutputPath}`);
+
+  // Generate CNPF variant (separate Romanian file)
+  const cnpfHtmlPath = join(__dirname, "resume-cnpf.html");
+  await page.goto(`file://${cnpfHtmlPath}`, { waitUntil: "networkidle0" });
+  await page.evaluateHandle("document.fonts.ready");
+
+  const cnpfOutputPath = join(__dirname, "Andrei Scripcaru - CNPF.pdf");
+  await page.pdf({
+    path: cnpfOutputPath,
+    ...pdfOptions,
+  });
+
+  console.log(`PDF generated: ${cnpfOutputPath}`);
 
   await browser.close();
 }
